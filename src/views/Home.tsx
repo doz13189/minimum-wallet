@@ -1,49 +1,62 @@
-import Container from "@mui/material/Container";
 import * as React from "react";
-import Box from "@mui/material/Box";
+
+// mui
+import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import { Box } from "@mui/system";
 
 export default function Home() {
   return (
     <Container>
+      <Typography m={2}>Wallet</Typography>
       <BasicCard />
     </Container>
   );
 }
 
-const bull = (
-  <Box
-    component="span"
-    sx={{ display: "inline-block", mx: "2px", transform: "scale(0.8)" }}
-  ></Box>
-);
-
 function BasicCard() {
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card>
       <CardContent>
-        <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        <Typography variant="h5" component="div">
-          be{bull}nev{bull}o{bull}lent
-        </Typography>
-        <Typography sx={{ mb: 1.5 }} color="text.secondary">
-          adjective
-        </Typography>
-        <Typography variant="body2">
-          well meaning and kindly.
-          <br />
-          {'"a benevolent smile"'}
-        </Typography>
+        <Box
+          component="form"
+          sx={{
+            "& > :not(style)": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField label="From" margin="normal" variant="outlined" />
+
+          <TextField label="To" margin="normal" variant="outlined" />
+        </Box>
+        <Box
+          component="form"
+          sx={{
+            "& > :not(style)": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <TextField label="Gas Price" margin="normal" variant="outlined" />
+
+          <TextField label="Gas Limit" margin="normal" variant="outlined" />
+        </Box>
+        <Box
+          component="form"
+          sx={{
+            "& > :not(style)": { m: 1, width: "25ch" },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <Button variant="outlined">send</Button>
+        </Box>
       </CardContent>
-      <CardActions>
-        <Button size="small">Learn More</Button>
-      </CardActions>
     </Card>
   );
 }
