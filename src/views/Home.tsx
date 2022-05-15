@@ -20,43 +20,60 @@ export default function Home() {
 
 function BasicCard() {
   return (
-    <Card>
-      <CardContent>
-        <Box
-          component="form"
-          sx={{
-            "& > :not(style)": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField label="From" margin="normal" variant="outlined" />
+    <>
+      <Card>
+        <CardContent>
+          <Button variant="outlined">generate secret key</Button>
+          <Typography m={2}>mnemonic</Typography>
 
-          <TextField label="To" margin="normal" variant="outlined" />
-        </Box>
-        <Box
-          component="form"
-          sx={{
-            "& > :not(style)": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <TextField label="Gas Price" margin="normal" variant="outlined" />
+          <TextField
+            label="mnemonic"
+            fullWidth
+            margin="normal"
+            variant="outlined"
+          />
+        </CardContent>
+      </Card>
 
-          <TextField label="Gas Limit" margin="normal" variant="outlined" />
-        </Box>
-        <Box
-          component="form"
-          sx={{
-            "& > :not(style)": { m: 1, width: "25ch" },
-          }}
-          noValidate
-          autoComplete="off"
-        >
-          <Button variant="outlined">send</Button>
-        </Box>
-      </CardContent>
-    </Card>
+      <Typography m={2}></Typography>
+      <Card>
+        <CardContent>
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField label="From" margin="normal" variant="outlined" />
+
+            <TextField label="To" margin="normal" variant="outlined" />
+          </Box>
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <TextField label="Gas Price" margin="normal" variant="outlined" />
+
+            <TextField label="Gas Limit" margin="normal" variant="outlined" />
+          </Box>
+          <Box
+            component="form"
+            sx={{
+              "& > :not(style)": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <Button variant="outlined">send</Button>
+          </Box>
+        </CardContent>
+      </Card>
+    </>
   );
 }
