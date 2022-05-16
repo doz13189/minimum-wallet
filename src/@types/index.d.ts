@@ -1,4 +1,4 @@
 declare module "ethereum-hdwallet";
 
-// "@types/ethereumjs-tx": "^2.0.0",
+// @types/ethereumjs-tx はインストール可だが、index.d.ts が提供されていない
 declare module "ethereumjs-tx";
