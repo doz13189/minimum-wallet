@@ -85,7 +85,7 @@ export default function Home() {
       console.log({ priveteKey: priveteKey });
 
       const txParams = {
-        nonce: 0,
+        nonce: 1,
         gasPrice: web3.utils.toHex(21000000000),
         gasLimit: web3.utils.toHex(4712388),
         // gasLimit: web3.utils.toHex(100),
