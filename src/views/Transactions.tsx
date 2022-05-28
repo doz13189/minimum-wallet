@@ -5,7 +5,6 @@ import Transaction from "ethereumjs-tx";
 import Web3 from "web3";
 
 // mui
-import Container from "@mui/material/Container";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
@@ -16,7 +15,11 @@ const web3 = new Web3(
   "https://ropsten.infura.io/v3/dc5b40653350479e8dcced05293d4ea1"
 );
 
-export default function Home() {
+type TransactionsProps = {
+  privateKey: string;
+};
+
+const Transactions: React.FC<TransactionsProps> = () => {
   const [mnemonic, setMnemonic] = useState(
     "census inch execute carry fine oblige bring task armed awkward mad dial"
   );
@@ -39,6 +42,7 @@ export default function Home() {
       setFromAddress(
         `0x${hdwallet.derive(`m/44'/60'/0'/0/0`).getAddress().toString("hex")}`
       );
+
       setPriveteKey(hdwallet.derive(`m/44'/60'/0'/0/0`).getPrivateKey());
       console.log({
         PrivateKey: hdwallet.derive(`m/44'/60'/0'/0/0`).getPrivateKey(),
@@ -164,11 +168,13 @@ export default function Home() {
   }
 
   return (
-    <Container>
+    <>
       <Typography m={2}>Wallet</Typography>
       <DecideSecretKey />
       <Typography m={2}></Typography>
       <SendTransaction />
-    </Container>
+    </>
   );
-}
+};
+
+export default Transactions;
