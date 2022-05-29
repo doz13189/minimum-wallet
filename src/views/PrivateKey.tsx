@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 // mui
 import Typography from "@mui/material/Typography";
@@ -11,6 +12,7 @@ import { PrivateKeyType, handlePrivateKey } from "../models/PrivateKeyType";
 // components
 import SelectPrivateKeyType from "../components/SelectPrivateKeyType";
 import PrivateKeyInputTextField from "../components/PrivateKeyInputTextField";
+import PrivateKeyGenerate from "../components/PrivateKeyGenerate";
 
 type PrivateKeyProps = {
   handlePrivateKey: handlePrivateKey;
@@ -23,12 +25,16 @@ const PrivateKey: React.FC<PrivateKeyProps> = (props) => {
   const [privateKeyGenerateType, setPrivateKeyGenerateType] =
     useState<PrivateKeyGenerateType>("seed");
 
+  const navigate = useNavigate();
+
   const handlePrivateKeyGenerateType = (value: PrivateKeyGenerateType) => {
     setPrivateKeyGenerateType(value);
   };
+
   const onClickEvent = () => {
-    console.log("move to /transactions");
+    navigate("/transactions");
   };
+
   return (
     <>
       <Typography>秘密鍵を入力してください</Typography>
@@ -36,30 +42,29 @@ const PrivateKey: React.FC<PrivateKeyProps> = (props) => {
         privateKeyGenerateType={privateKeyGenerateType}
         handlePrivateKeyGenerateType={handlePrivateKeyGenerateType}
       />
-      <PrivateKeyInputTextField handlePrivateKey={handlePrivateKey} />
-      <PrivateKeyGenerateField
-        handlePrivateKey={handlePrivateKey}
-        privateKey={privateKey}
-      />
-      <Button onClick={onClickEvent} variant="outlined">
-        次へ
-      </Button>
-    </>
-  );
-};
 
-const PrivateKeyGenerateField: React.FC<PrivateKeyProps> = (props) => {
-  const { handlePrivateKey, privateKey } = props;
-  return (
-    <>
-      <Button onClick={() => handlePrivateKey("sample key")} variant="outlined">
-        新規生成
-      </Button>
+      <div>
+        {privateKeyGenerateType === "seed" ? (
+          <PrivateKeyInputTextField handlePrivateKey={handlePrivateKey} />
+        ) : null}
 
-      <Typography>シード</Typography>
-      <Typography>{privateKey}</Typography>
-      <Typography>ニーモニックコード</Typography>
-      <Typography>{privateKey}</Typography>
+        {privateKeyGenerateType === "mnemonic" ? (
+          <PrivateKeyInputTextField handlePrivateKey={handlePrivateKey} />
+        ) : null}
+
+        {privateKeyGenerateType === "generate" ? (
+          <PrivateKeyGenerate
+            handlePrivateKey={handlePrivateKey}
+            privateKey={privateKey}
+          />
+        ) : null}
+      </div>
+
+      <div>
+        <Button onClick={onClickEvent} variant="outlined">
+          次へ
+        </Button>
+      </div>
     </>
   );
 };
